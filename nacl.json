@@ -1,0 +1,22 @@
+[
+  {
+    "group": "guest",
+    "permissions": [
+      {
+        "resource": "*",
+        "methods": ["*"],
+        "action": "deny"
+      }
+    ]
+  },
+  {
+    "group": "REGULAR",
+    "permissions": [
+      {
+        "resource": "*",
+        "methods": ["POST", "GET", "PATCH", "DELETE"],
+        "action": "allow"
+      }
+    ]
+  }
+]

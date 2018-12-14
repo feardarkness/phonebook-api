@@ -1,0 +1,5 @@
+node_modules/
+docs/
+logger/*.log
+npm-debug.log
+configurations/*.js

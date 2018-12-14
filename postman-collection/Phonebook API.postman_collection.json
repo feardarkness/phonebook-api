@@ -1,0 +1,1011 @@
+{
+	"info": {
+		"_postman_id": "134eb28a-388a-455e-a3d8-fc6c2343f80f",
+		"name": "Phonebook API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register regular user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b192df8c-a27a-491d-b7b3-5b17fe3a6414",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Body must have id\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"_id\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"regular2\",\n  \"password\": \"password\",\n  \"email\": \"regqweasdsada@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}/users/",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "Allows an user to register in the API. All external users should be created in this endpoint."
+					},
+					"response": [
+						{
+							"name": "Incorrect params",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"regularusear\",\n  \"password\": \"password\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}users/regular",
+									"host": [
+										"{{host}}users"
+									],
+									"path": [
+										"regular"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": ""
+								},
+								{
+									"key": "Content-Length",
+									"value": "170",
+									"name": "Content-Length",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Oct 2018 15:37:14 GMT",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"aa-AqI8miA+W1ommgg4b2XNMOktDMw\"",
+									"name": "ETag",
+									"description": ""
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains",
+									"name": "Strict-Transport-Security",
+									"description": ""
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": ""
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off",
+									"name": "X-DNS-Prefetch-Control",
+									"description": ""
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen",
+									"name": "X-Download-Options",
+									"description": ""
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN",
+									"name": "X-Frame-Options",
+									"description": ""
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"Incorrect parameters\",\n  \"errors\": [\n    {\n      \"type\": \"required\",\n      \"field\": \"email\",\n      \"message\": \"The 'email' field is required!\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Successful register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"regularuasdsear\",\n  \"password\": \"password\",\n  \"email\": \"regasda@gmail.com\",\n  \"role\": \"ADMIN\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}users/regular",
+									"host": [
+										"{{host}}users"
+									],
+									"path": [
+										"regular"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": ""
+								},
+								{
+									"key": "Content-Length",
+									"value": "190",
+									"name": "Content-Length",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Oct 2018 15:36:27 GMT",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"be-DzKT+HhTE2+dCsWV8e0MfTPpTX0\"",
+									"name": "ETag",
+									"description": ""
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains",
+									"name": "Strict-Transport-Security",
+									"description": ""
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"name": "X-Content-Type-Options",
+									"description": ""
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off",
+									"name": "X-DNS-Prefetch-Control",
+									"description": ""
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen",
+									"name": "X-Download-Options",
+									"description": ""
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN",
+									"name": "X-Frame-Options",
+									"description": ""
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block",
+									"name": "X-XSS-Protection",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"createdAt\": \"2018-10-12T15:36:16.528Z\",\n  \"_id\": \"5bc0bf7b44d1d840caffce37\",\n  \"username\": \"regularuasdsear\",\n  \"email\": \"regasda@gmail.com\",\n  \"role\": \"REGULAR\",\n  \"state\": \"CREATED\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Change regular user info",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"password\",\n\t\"email\": \"correo@persona.com\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}/users/:userId",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "5c1413fe6b7f5417c12a6ecc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a12560f5-18f9-4963-af57-9bd0210a6c62",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body data must exists and have id property\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"_id\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{host}}/users/:userid",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "5c1413fe6b7f5417c12a6ecc",
+									"description": "User identifier"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://{{host}}/users/:userid",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "5c1413fe6b7f5417c12a6ecc",
+											"description": "User identifier"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": ""
+								},
+								{
+									"key": "Content-Length",
+									"value": "33",
+									"name": "Content-Length",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Oct 2018 20:12:28 GMT",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-ZGVnntUV23OO3IYyawjFZsL32fI\"",
+									"name": "ETag",
+									"description": ""
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"User not found\"\n}"
+						},
+						{
+							"name": "Successful request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://{{host}}/users/:userid",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "5c1413fe6b7f5417c12a6ecc",
+											"description": "User identifier"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": ""
+								},
+								{
+									"key": "Content-Length",
+									"value": "268",
+									"name": "Content-Length",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Oct 2018 20:12:01 GMT",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10c-3TXUFhrmiuE2aTMYZWNn0AM3UD4\"",
+									"name": "ETag",
+									"description": ""
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"createdAt\": \"2018-10-10T18:14:03.057Z\",\n  \"_id\": \"5bbe5250a0f3f1611a9564cb\",\n  \"username\": \"usuario2\",\n  \"email\": \"email2@gmail.com\",\n  \"role\": \"REGULAR\",\n  \"state\": \"CREATED\",\n  \"lastLogin\": \"2018-10-10T19:46:51.694Z\",\n  \"updatedAt\": \"2018-10-10T19:46:51.694Z\"\n}"
+						},
+						{
+							"name": "User not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{token}}",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{host}}/users/:userid",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "5bbe5250a0f3f1611a9564cc",
+											"description": "User identifier"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": ""
+								},
+								{
+									"key": "Content-Length",
+									"value": "33",
+									"name": "Content-Length",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Oct 2018 20:12:28 GMT",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-ZGVnntUV23OO3IYyawjFZsL32fI\"",
+									"name": "ETag",
+									"description": ""
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"User not found\"\n}"
+						},
+						{
+							"name": "Successful request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{host}}/users/:userid",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "5bbe5250a0f3f1611a9564cb",
+											"description": "User identifier"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": ""
+								},
+								{
+									"key": "Content-Length",
+									"value": "268",
+									"name": "Content-Length",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Oct 2018 20:12:01 GMT",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10c-3TXUFhrmiuE2aTMYZWNn0AM3UD4\"",
+									"name": "ETag",
+									"description": ""
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"createdAt\": \"2018-10-10T18:14:03.057Z\",\n  \"_id\": \"5bbe5250a0f3f1611a9564cb\",\n  \"username\": \"usuario2\",\n  \"email\": \"email2@gmail.com\",\n  \"role\": \"REGULAR\",\n  \"state\": \"CREATED\",\n  \"lastLogin\": \"2018-10-10T19:46:51.694Z\",\n  \"updatedAt\": \"2018-10-10T19:46:51.694Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2066d03b-ea00-41e1-a2b1-c529959f27f0",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{host}}/users/:userid",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "5c14168c1409d61e73065568",
+									"description": "identifier of the user to delete"
+								}
+							]
+						},
+						"description": "Allow you to delete one user record"
+					},
+					"response": [
+						{
+							"name": "Successful delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{token}}",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{host}}/users/:userid",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "5bbe5290a0f3f1611a9564cc",
+											"description": "identifier of the user to delete"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Oct 2018 19:55:07 GMT",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "User not found to delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{token}}",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{host}}/users/:userid",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										":userid"
+									],
+									"variable": [
+										{
+											"key": "userid",
+											"value": "5bbe5290a0f3f1611a9564cc",
+											"description": "identifier of the user to delete"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": ""
+								},
+								{
+									"key": "Content-Length",
+									"value": "33",
+									"name": "Content-Length",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Oct 2018 19:56:23 GMT",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-ZGVnntUV23OO3IYyawjFZsL32fI\"",
+									"name": "ETag",
+									"description": ""
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"User not found\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "Create contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Coneja\",\n\t\"phoneNumbers\": [{\n\t\t\"type\": \"home\",\n\t\t\"number\": \"775846854\"\n\t}, {\n\t\t\"type\": \"house\",\n\t\t\"number\": \"775846854\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}/contacts",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete contact",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}/contacts/5c127942a046920397e8703e",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"contacts",
+								"5c127942a046920397e8703e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all contacts of the user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}/contacts?page=1&limit=10",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"contacts"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one contact",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{host}}/contacts/5c127a9ca046920397e8703a",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"contacts",
+								"5c127a9ca046920397e8703a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9d21b97d-e10f-46de-b658-3333f845fabe",
+						"exec": [
+							"const tokenInfo = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable('token', tokenInfo.token);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body must have token\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property(\"token\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"regular2\",\n\t\"password\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "http://{{host}}/login",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

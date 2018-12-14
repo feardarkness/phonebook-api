@@ -1,0 +1,43 @@
+{
+  "name": "phonebook-api",
+  "version": "1.0.0",
+  "description": "API to register contact information",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "seed": "node src/seeders/create-starter-users.js",
+    "test": "NODE_ENV=test tape tests/unit/**/*.js | tap-spec"
+  },
+  "keywords": [],
+  "author": "Ariel Alvarado",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^3.0.1",
+    "body-parser": "^1.18.2",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.2",
+    "express-acl": "^2.0.3",
+    "fastest-validator": "^0.6.5",
+    "helmet": "^3.14.0",
+    "jwt-simple": "^0.5.5",
+    "moment": "^2.22.2",
+    "mongoose": "^5.0.0-rc0",
+    "objectid": "^3.2.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "jsdoc": "^3.5.5",
+    "newman": "^4.2.2",
+    "nodemon": "^1.18.8",
+    "supertest": "^3.0.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.8.0"
+  }
+}
